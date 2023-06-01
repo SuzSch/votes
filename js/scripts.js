@@ -1,27 +1,28 @@
-window.onload = function() {
-    let form = document.querySelector("form");
-    form.onsubmit = function(event) {
-      // in this section we get the value for each form input
-      const person1Input = document.getElementById("person1Input").value;
-      const person2Input = document.getElementById("person2Input").value;
-      const animalInput= document.getElementById("animalInput").value;
-      const exclamationInput = document.getElementById("exclamationInput").value;
-      const verbInput = document.getElementById("verbInput").value;
-      const nounInput = document.getElementById("nounInput").value;
-  
-      // then we set the story variables to the values we got from the form
-      document.querySelector("span#person1a").innerText = person1Input;
-      document.querySelector("span#person1b").innerText = person1Input;
-      document.querySelector("span#person1c").innerText = person1Input;
-      document.querySelector("span#person2a").innerText = person2Input;
-      document.querySelector("span#person2b").innerText = person2Input;
-      document.querySelector("span#animal").innerText = animalInput;
-      document.querySelector("span#verb").innerText = verbInput;
-      document.querySelector("span#noun").innerText = nounInput;
-      document.querySelector("span#exclamation").innerText = exclamationInput;
-  
-      document.querySelector("div#story").removeAttribute("class");
-  
-      event.preventDefault();
-    };
+window.onload = function () {
+  // we get the form element
+  const form = document.querySelector("form");
+  // we create an event handler for the form's submission
+  form.onsubmit = function (event) {
+    event.preventDefault();
+
+    // we access two HTML elements, the drink menu and the message to underaged folks,
+    // and add the hidden class to those elements;
+    // doing this clears results before displaying new ones, which
+    // allows the user to submit the form again and again, and
+    // see new results.
+    let voterRegistation = document.getElementById("voteReg");
+    voteReg.setAttribute("class", "hidden");
+    let under18Message = document.getElementById("under-18");
+    under18Message.setAttribute("class", "hidden");
+
+    // we gather the age value
+    const age = parseInt(document.querySelector("input#age").value);
+
+    // we check if the age is greater than 21.
+    if (age >= 18) {
+      voteReg.removeAttribute("class");
+    } else {
+      under18Message.removeAttribute("class");
+    }
   };
+};
